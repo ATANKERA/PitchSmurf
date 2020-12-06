@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<head>
+<title>404 Query Failed, Bad Syntax?</title>
+<style>
+body {
+  background: #e3f3ff;
+  font-family: 'Lato', sans-serif;
+}
+.robot-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.robot-container.is-continuous div {
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.robothead {
+  position: relative;
+  z-index: 2000;
+}
+.robothead .ears {
+  width: 325px;
+  height: 48px;
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  background: #EEEFEE;
+  border-radius: 50px;
+  border: 1px solid #ECEDF2;
+  box-shadow: 0 0 15px #ECEDF2, inset 0 0 5px #C8CCD8;
+  z-index: 0;
+}
+.robothead .helmet {
+  width: 280px;
+  height: 200px;
+  position: relative;
+  background: #FCF;
+  border-radius: 100%;
+  box-shadow: 0 0 15px #C8CCD8, inset 0 0 50px 20px #ECEDF2;
+  z-index: 10;
+}
+.robothead .helmet:before {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 104px;
+  border-top: 104px solid #199EFC;
+  border-left: 24px solid transparent;
+  border-right: 24px solid transparent;
+  height: 0;
+  width: 24px;
+}
+.robothead .helmet:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 280px;
+  height: 200px;
+  background: #C8CCD8;
+  border-radius: 100%;
+  -webkit-clip-path: inset(120px 44px 0 44px);
+          clip-path: inset(120px 44px 0 44px);
+}
+.robothead .visor {
+  position: absolute;
+  left: 50%;
+  top: 104px;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 192px;
+  height: 28px;
+  z-index: 50;
+  background: linear-gradient(0deg, #CCCCD8, #FCCCF2);
+  border-radius: 0 0 100% 100%;
+  box-shadow: 0 5px 10px #ECEDF2;
+}
+.robothead .face {
+  width: 280px;
+  height: 200px;
+  position: relative;
+  top: -200px;
+  z-index: 20;
+  background: #FFF;
+  border-radius: 100%;
+  box-shadow: inset 0 0 50px 5px #CFFFD8;
+  -webkit-clip-path: inset(120px 45px 0 45px);
+          clip-path: inset(120px 45px 0 45px);
+}
+.robothead .face .lefteye,
+.robothead .face .righteye {
+  background-color: #ACFFFA;
+  box-shadow: 0 0 5px #520BFC;
+  border-top-left-radius: 27px;
+  border-top-right-radius: 27px;
+  border-bottom: 0;
+  height: 17px;
+  position: absolute;
+  width: 22px;
+}
+.robothead .face .lefteye {
+  -webkit-transform: translate(80px, 140px);
+          transform: translate(80px, 140px);
+}
+.robothead .face .righteye {
+  -webkit-transform: translate(173px, 139px);
+          transform: translate(173px, 139px);
+}
+.robotbody .torso {
+  width: 144px;
+  height: 160px;
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  background: #FFF;
+  border: 1px solid #ECEDF2;
+  border-radius: 100% 100% 120px 120px;
+  box-shadow: inset 0 10px 30px 5px #ECEDF2;
+}
+.robotbody .torso:before {
+  display: block;
+  content: '';
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  border: 3px dotted #199EFC;
+  border-radius: 100%;
+  box-shadow: 0 0 2px #52BBFC, inset 0 0 2px #52BBFC;
+}
+.robotbody .leftarm {
+  width: 48px;
+  height: 130px;
+  position: absolute;
+  top: 190px;
+  left: 50px;
+  -webkit-transform: rotate(20deg);
+          transform: rotate(20deg);
+  background: #FFF;
+  border-radius: 50% 0 24px 50%;
+  box-shadow: inset 0 10px 15px 5px #ECEDF2, 0 0 10px #ECEDF2;
+}
+.robotbody .leftarm:before {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  background: #C8CCD8;
+}
+.robotbody .rightarm {
+  width: 48px;
+  height: 130px;
+  position: absolute;
+  top: 190px;
+  right: 50px;
+  -webkit-transform: rotate(-20deg);
+          transform: rotate(-20deg);
+  background: #FFF;
+  border-radius: 0 50% 50% 24px;
+  box-shadow: inset 0 10px 15px 5px #ECEDF2, 0 0 10px #ECEDF2;
+}
+.robotbody .rightarm:before {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  background: #C8CCD8;
+}
+.robotbody .leftleg {
+  width: 48px;
+  height: 130px;
+  position: absolute;
+  top: 250px;
+  left: 68px;
+  background: #FFF;
+  border-radius: 0 0 15px 50%;
+  box-shadow: inset 0 10px 15px 5px #ECEDF2, 0 0 10px #ECEDF2;
+}
+.robotbody .leftleg:before {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 36%;
+  background: #C8CCD8;
+}
+.robotbody .rightleg {
+  width: 48px;
+  height: 130px;
+  position: absolute;
+  top: 250px;
+  right: 68px;
+  background: #FFF;
+  border-radius: 0 0 50% 15px;
+  box-shadow: inset 0 10px 15px 5px #ECEDF2, 0 0 10px #ECEDF2;
+}
+.robotbody .rightleg:before {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 36%;
+  background: #C8CCD8;
+}
+.controls {
+  display: flex;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, 410%);
+          transform: translate(-50%, 410%);
+}
+.controls__button {
+  align-items: center;
+  background: #FF0045;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 6px #C70035;
+  color: #FFF;
+  cursor: pointer;
+  display: flex;
+  font-weight: 700;
+  height: 50px;
+  justify-content: center;
+  letter-spacing: 1px;
+  margin: 0 5px;
+  padding: 0 15px;
+  position: relative;
+  text-transform: uppercase;
+}
+.controls__button:hover:not(.is-active) {
+  box-shadow: 0 4px #C70035;
+  top: 2px;
+}
+.controls__button:active,
+.controls__button.is-active {
+  box-shadow: 0 0 #C70035;
+  top: 6px;
+}
+.button {
+  display: flex;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, 545%);
+          transform: translate(-50%, 545%);
+}
+/*
+  PATTY'S ANIMATIONS
+*/
+
+.shrug .robothead {
+  -webkit-animation: headShrug 2s ease-out infinite;
+          animation: headShrug 2s ease-out infinite;
+}
+.shrug .lefteye,
+.shrug .righteye {
+  -webkit-animation: squintEyes 2s ease-out infinite;
+          animation: squintEyes 2s ease-out infinite;
+}
+.shrug .leftarm {
+  -webkit-animation: armShrug 2s ease-out infinite;
+          animation: armShrug 2s ease-out infinite;
+}
+.shrug .rightarm {
+  -webkit-animation: armShrug 2s ease-out infinite;
+          animation: armShrug 2s ease-out infinite;
+}
+
+
+
+
+/*
+  Head Actions
+*/
+
+
+@-webkit-keyframes headShrug {
+  50% {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+  }
+}
+@keyframes headShrug {
+  50% {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+  }
+}
+@-webkit-keyframes squintEyes {
+  50% {
+    height: 10px;
+  }
+}
+@keyframes squintEyes {
+  50% {
+    height: 10px;
+  }
+}
+/*
+  Arm Actions
+*/
+
+
+@-webkit-keyframes armShrug {
+  50% {
+    top: 170px;
+  }
+}
+@keyframes armShrug {
+  50% {
+    top: 170px;
+  }
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<div id="claire"></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js'></script>
+<script id="rendered-js">
+const COMMANDS = [{
+  label: "OOPS Seems Like a 404, Are you Sure you did it right?",
+  value: "shrug" }];
+
+
+const Controls = ({ onClickCommand, selectedClass }) =>
+React.createElement("div", { className: "controls" },
+
+COMMANDS.map(command => {
+  const buttonClass = command.value === selectedClass ? "is-active" : "";
+  return (
+    React.createElement("div", {
+      className: `controls__button ${buttonClass}`,
+      onClick: () => onClickCommand(command.value) },
+
+    command.label));
+
+
+}));
+
+
+
+
+class Claire extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedClass: "",
+      continuous: false };
+
+    this.onClickCommand = this.onClickCommand.bind(this);
+  }
+
+  onClickCommand(command) {
+    const { selectedClass } = this.state;
+    const newSelectedClass = selectedClass === "" || command !== selectedClass ? command : "";
+    this.setState({
+      selectedClass: newSelectedClass });
+
+
+  }
+
+  render() {
+    const { selectedClass } = this.state;
+
+    return (
+      React.createElement("div", null,
+      React.createElement("div", { className: `robot-container ${selectedClass}` },
+      React.createElement("div", { className: "robothead" },
+      React.createElement("div", { className: "ears" }),
+      React.createElement("div", { className: "helmet" }),
+      React.createElement("div", { className: "visor" }),
+      React.createElement("div", { className: "face" },
+      React.createElement("div", { className: "lefteye" }),
+      React.createElement("div", { className: "righteye" }))),
+
+
+
+      React.createElement("div", { className: "robotbody" },
+      React.createElement("div", { className: "leftarm" }),
+      React.createElement("div", { className: "rightarm" }),
+      React.createElement("div", { className: "leftleg" }),
+      React.createElement("div", { className: "rightleg" }),
+      React.createElement("div", { className: "torso" }))),
+
+
+
+      React.createElement(Controls, {
+        onClickCommand: this.onClickCommand,
+        selectedClass: selectedClass })));
+
+
+
+  }}
+
+
+ReactDOM.render(React.createElement(Claire, null), document.getElementById('claire'));
+    </script>
+</body>
+</html>
