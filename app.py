@@ -59,16 +59,31 @@ def fcomp(companyname):
 
     root = Presentation()
     first_slide_layout = root.slide_layouts[0]
-    second_slide_layout = root.slide_layouts[1]
     slide = root.slides.add_slide(first_slide_layout)
     slide.shapes.title.text = name
     slide.placeholders[1].text = t + " -- Pitch Smurf"
 
+    second_slide_layout = root.slide_layouts[1]
     slide2 = root.slides.add_slide(second_slide_layout)
     slide2.shapes.title.text = listofdata[0]
     slide2.placeholders[1].text = listofdata[1]
 
-    #used ticker, sector, description
+    third_slide_layout = root.slide_layouts[1]
+    slide3 = root.slides.add_slide(third_slide_layout)
+    slide3.shapes.title.text = "Key Shareholders"
+    slide3.placeholders[1].text = listofdata[2] + " & " + listofdata[3]
+
+    fourth_slide_layout = root.slide_layouts[1]
+    slide4 = root.slides.add_slide(fourth_slide_layout)
+    slide4.shapes.title.text = "Valuation"
+    slide4.placeholders[1].text = "Market Cap: " + listofdata[4] + "P/E Ratio: " + listofdata[5] + "EPS: " + listofdata[6]
+
+    fifth_slide_layout = root.slide_layouts[1]
+    slide4 = root.slides.add_slide(fifth_slide_layout)
+    slide4.shapes.title.text = "Predictions"
+    slide4.placeholders[1].text = "Rating: " + listofdata[7] + "Expected Return on Equity in 6 months based on TTM: " + listofdata[8]
+
+    #used ticker, sector, description, invest1, invest2
 
     root.save("Output.pptx")
 
