@@ -3,6 +3,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 import requests
 from bs4 import BeautifulSoup
+from tickerscrape import ticker
+from tickerscrape import overview
+from pptx import Presentation
+
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SecretHere'
@@ -46,8 +51,29 @@ def fcomp(companyname):
     soup = BeautifulSoup(content.text, 'html.parser')
 
 
+    name = companyname
 
-    return companyname
+    t = ticker(name)
+
+    listofdata = overview(ticker(name)).split("---")
+
+    root = Presentation()
+    first_slide_layout = root.slide_layouts[0]
+    second_slide_layout = root.slide_layouts[1]
+    slide = root.slides.add_slide(first_slide_layout)
+    slide.shapes.title.text = name
+    slide.placeholders[1].text = t + " -- Pitch Smurf"
+
+    slide2 = root.slides.add_slide(second_slide_layout)
+    slide2.shapes.title.text = listofdata[0]
+    slide2.placeholders[1].text = listofdata[1]
+
+    #used ticker, sector, description
+
+    root.save("Output.pptx")
+
+
+    return overview(ticker(name))
 
 
 @app.route('/404')
